@@ -25,3 +25,30 @@ class StudentManagment:
         for s in students:
             if s.id == id:
                 return s 
+manager = StudentManager()
+
+while True:
+    print("\n1. Add Student")
+    print("2. Show Students")
+    print("3. Search Student")
+    print("4. Exit")
+
+    choice = input("Enter choice: ")
+
+    if choice == "1":
+        sid = input("Enter ID: ")
+        name = input("Enter Name: ")
+        dept = input("Enter Department: ")
+
+        student = Student(sid, name, dept)
+        manager.add_student(student)
+
+    elif choice == "2":
+        manager.show_students()
+
+    elif choice == "3":
+        sid = input("Enter ID to search: ")
+        manager.search_student(sid)
+
+    elif choice == "4":
+        break
