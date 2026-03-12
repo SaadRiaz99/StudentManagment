@@ -1,31 +1,38 @@
 class Student:
-    def __init__(self , id ,  name , age , department):
+    def __init__(self, id, name, age, department):
         self.id = id
         self.name = name
         self.age = age
         self.department = department
 
     def display(self):
+        print(f"ID: {self.id}")
         print(f"Name: {self.name}")
         print(f"Age: {self.age}")
         print(f"Department: {self.department}")
         print("-------------------")
-class StudentManagment:
+
+
+class StudentManagement:
     def __init__(self):
         self.students = []
-    
-    def add_Sudent(self, student):
+
+    def add_student(self, student):
         self.students.append(student)
 
     def display_students(self):
         for s in self.students:
-            s.dispaly()
+            s.display()
 
-    def search_student(self ,id):
-        for s in students:
+    def search_student(self, id):
+        for s in self.students:
             if s.id == id:
-                return s 
-manager = StudentManager()
+                s.display()
+                return
+        print("Student not found")
+
+
+manager = StudentManagement()
 
 while True:
     print("\n1. Add Student")
@@ -38,13 +45,14 @@ while True:
     if choice == "1":
         sid = input("Enter ID: ")
         name = input("Enter Name: ")
+        age = input("Enter Age: ")
         dept = input("Enter Department: ")
 
-        student = Student(sid, name, dept)
+        student = Student(sid, name, age, dept)
         manager.add_student(student)
 
     elif choice == "2":
-        manager.show_students()
+        manager.display_students()
 
     elif choice == "3":
         sid = input("Enter ID to search: ")
