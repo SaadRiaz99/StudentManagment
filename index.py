@@ -43,10 +43,10 @@ while True:
     choice = input("Enter choice: ")
 
     if choice == "1":
-        sid = input("Enter ID: ")
-        name = input("Enter Name: ")
-        age = input("Enter Age: ")
-        dept = input("Enter Department: ")
+        sid  : str = str(input("Enter ID: "))
+        name : str = str(input("Enter Name: "))
+        age : int = int(input("Enter Age: "))
+        dept  : str= str(input("Enter Department: "))
 
         student = Student(sid, name, age, dept)
         manager.add_student(student)
