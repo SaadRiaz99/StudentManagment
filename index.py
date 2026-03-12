@@ -1,6 +1,10 @@
+import random
+import csv
+
+
 class Student:
-    def __init__(self, id, name, age, department):
-        self.id = id
+    def __init__(self, name, age, department):
+        self.id = random.randint(1000, 9999)
         self.name = name
         self.age = age
         self.department = department
@@ -26,10 +30,19 @@ class StudentManagement:
 
     def search_student(self, id):
         for s in self.students:
-            if s.id == id:
+            if str(s.id) == id:
                 s.display()
                 return
         print("Student not found")
+
+    def save_student(self, filename):
+        with open(filename, "w", newline="") as file:
+            writer = csv.writer(file)
+
+            writer.writerow(["ID", "Name", "Age", "Department"])
+
+            for s in self.students:
+                writer.writerow([s.id, s.name, s.age, s.department])
 
 
 manager = StudentManagement()
@@ -38,17 +51,17 @@ while True:
     print("\n1. Add Student")
     print("2. Show Students")
     print("3. Search Student")
-    print("4. Exit")
+    print("4. Save to CSV")
+    print("5. Exit")
 
     choice = input("Enter choice: ")
 
     if choice == "1":
-        sid  : str = str(input("Enter ID: "))
-        name : str = str(input("Enter Name: "))
-        age : int = int(input("Enter Age: "))
-        dept  : str= str(input("Enter Department: "))
+        name = input("Enter Name: ")
+        age = input("Enter Age: ")
+        dept = input("Enter Department: ")
 
-        student = Student(sid, name, age, dept)
+        student = Student(name, age, dept)
         manager.add_student(student)
 
     elif choice == "2":
@@ -59,4 +72,8 @@ while True:
         manager.search_student(sid)
 
     elif choice == "4":
+        manager.save_student("students.csv")
+        print("Data saved to students.csv")
+
+    elif choice == "5":
         break
